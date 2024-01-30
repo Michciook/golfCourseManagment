@@ -17,6 +17,12 @@ body {
     background-position: center;
 }
 
+.wrapper p {
+    margin-top: 20px;
+    text-align: center;
+    color: red;
+}
+
 .wrapper {
     width: 420px;
     background: transparent;

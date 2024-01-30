@@ -12,5 +12,5 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
 
    $login->loginUser();
 
-   header("location: ../index.php?error=none");
+   header("location: ../panel.php");
 }

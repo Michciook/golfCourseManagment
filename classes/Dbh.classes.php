@@ -1,5 +1,6 @@
 <?php
-include "../db_conf.php";
+
+include(__DIR__."/../db_conf.php");
 
 class Dbh {
     protected function connection() {
