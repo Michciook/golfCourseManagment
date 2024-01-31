@@ -18,13 +18,13 @@ class JobsView extends JobsController {
         echo "</table>";
     }
 
-    public function jobAdder($userID) {
+    public function jobAdderView($userID) {
         $workersArray = $this->getWorkers($userID);
 
         echo '
-        <form action="/action_page.php">
-            <label for="workers">Choose a worker:</label>
-            <select id="workers" name="workers">';
+        <form action="../includes/job_adder.inc.php" method="post">
+            <label for="worker">Choose a worker:</label>
+            <select id="worker" name="worker">';
         
         foreach ($workersArray as $worker) {
             echo "<option value=". $worker["username"] .">". $worker["username"] . "</option>";

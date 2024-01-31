@@ -10,6 +10,6 @@
 
         #if userRole is administrator or manager, show job adder form
         if($_SESSION["userroleID"] == 2 or $_SESSION["userroleID"] == 3) {
-            $jobs->jobAdder($_SESSION["userid"]);
+            $jobs->jobAdderView($_SESSION["userid"]);
         }
     ?>

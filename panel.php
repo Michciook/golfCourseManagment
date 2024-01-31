@@ -10,7 +10,7 @@
 </head>
 <body>
     <?php
-        include "includes/jobPanel.inc.php"
+        include "includes/job_panel.inc.php"
     ?>
 
     <form action="includes/logout.inc.php" method="post">

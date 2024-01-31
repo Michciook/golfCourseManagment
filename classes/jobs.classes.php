@@ -41,5 +41,15 @@ class Jobs extends Dbh {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    protected function addJob($worker, $description) {
+        $stmt = $this->connection()->prepare('insert into jobs (userID, courseID, description) select users.userID, users.courseID, ? from users where username = ?;');
+
+        if(!$stmt->execute([$description, $worker])) {
+            $stmt = null;
+            header("location: ../panel.php?error=stmtfailed");
+            exit();
+        }
+    }
+
     
 }
