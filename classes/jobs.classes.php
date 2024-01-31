@@ -22,4 +22,24 @@ class Jobs extends Dbh {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    protected function getWorkers($userID) {
+        $stmt = $this->connection()->prepare('SELECT username FROM users WHERE users.courseID = (SELECT courseID FROM users WHERE userID = ?);');
+
+        if(!$stmt->execute([$userID])) {
+            $stmt = null;
+            header("location: ../panel.php?error=stmtfailed");
+            exit();
+        }
+
+        if($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("location: ../panel.php?error=usernotfound");
+            exit();
+        }
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    
 }

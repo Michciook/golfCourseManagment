@@ -17,4 +17,25 @@ class JobsView extends JobsController {
         }
         echo "</table>";
     }
+
+    public function jobAdder($userID) {
+        $workersArray = $this->getWorkers($userID);
+
+        echo '
+        <form action="/action_page.php">
+            <label for="workers">Choose a worker:</label>
+            <select id="workers" name="workers">';
+        
+        foreach ($workersArray as $worker) {
+            echo "<option value=". $worker["username"] .">". $worker["username"] . "</option>";
+        }
+
+
+        echo '
+            </select>
+            <input type="text" name="description" placeholder="Description">
+            <input type="submit">
+        </form>
+        ';
+    }
 }
