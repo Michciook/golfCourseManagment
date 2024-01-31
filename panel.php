@@ -16,5 +16,7 @@
     <form action="includes/logout.inc.php" method="post">
         <button>Logout</button>   
     </form>
+
+    <script src="js/table_display.js"></script>
 </body>
 </html>
