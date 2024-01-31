@@ -2,7 +2,7 @@
 
 class Jobs extends Dbh {
     protected function getJobs($userID) {
-        $stmt = $this->connection()->prepare('SELECT jobs.jobID, jobs.description, courses.name as course, users.username as username
+        $stmt = $this->connection()->prepare('SELECT jobs.jobID, jobs.description, jobs.entryDate, courses.name as course, users.username as username
                                                 FROM jobs
                                                 JOIN courses ON jobs.courseID = courses.courseID
                                                 JOIN users ON jobs.userID = users.userID
@@ -16,7 +16,7 @@ class Jobs extends Dbh {
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../panel.php?error=usernotfound");
+            header("location: ../panel.php?error=nojobsfound");
             exit();
         }
 
@@ -41,10 +41,10 @@ class Jobs extends Dbh {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    protected function addJob($worker, $description) {
-        $stmt = $this->connection()->prepare('insert into jobs (userID, courseID, description) select users.userID, users.courseID, ? from users where username = ?;');
+    protected function addJob($worker, $description, $date) {
+        $stmt = $this->connection()->prepare('insert into jobs (userID, courseID, description, entryDate) select users.userID, users.courseID, ?, ? from users where username = ?;');
 
-        if(!$stmt->execute([$description, $worker])) {
+        if(!$stmt->execute([$description, $date, $worker])) {
             $stmt = null;
             header("location: ../panel.php?error=stmtfailed");
             exit();

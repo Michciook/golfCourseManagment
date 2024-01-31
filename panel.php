@@ -18,5 +18,6 @@
     </form>
 
     <script src="js/table_display.js"></script>
+    <script src="js/default_date.js"></script>
 </body>
 </html>

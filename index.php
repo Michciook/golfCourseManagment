@@ -20,7 +20,10 @@
             </form>
         <?php
             session_start();
-                
+            if(isset($_SESSION["userid"])) {
+                header("location: ../panel.php?alreadyloggedin");
+                exit;
+            }
             if (isset($_GET["error"])) {
                 switch ($_GET["error"]) {
                     case "wrongpassword":

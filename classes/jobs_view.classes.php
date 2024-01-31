@@ -8,11 +8,13 @@ class JobsView extends JobsController {
         echo "<table id='jobs'><tr>";
             echo "<th>User</th>";
             echo "<th>Job Description</th>";
+            echo "<th>Date</th>";
         echo "</tr>";
         foreach ($jobsArray as $job) {
             echo "<tr>";
                 echo "<td>". $job["username"] . "</td>";
                 echo "<td>". $job["description"] . "</td>";
+                echo "<td>". $job["entryDate"] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
@@ -34,6 +36,8 @@ class JobsView extends JobsController {
         echo '
             </select>
             <input type="text" name="description" placeholder="Description">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date">
             <input type="submit">
         </form>
         ';
