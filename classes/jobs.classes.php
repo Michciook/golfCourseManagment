@@ -16,8 +16,7 @@ class Jobs extends Dbh {
 
         if($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../panel.php?error=nojobsfound");
-            exit();
+            return [];
         }
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

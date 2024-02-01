@@ -6,9 +6,8 @@
 
         $jobs = new JobsView();
 
-        if(!isset($_GET["error"])) {
-            $jobs->displayJobs($_SESSION["userid"]);
-        }
+        $jobs->displayJobs($_SESSION["userid"]);
+    
         #if userRole is administrator or manager, show job adder form
         if($_SESSION["userroleID"] == 2 or $_SESSION["userroleID"] == 3) {
             $jobs->jobAdderView($_SESSION["userid"]);
