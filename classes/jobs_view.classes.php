@@ -3,24 +3,27 @@
 class JobsView extends Jobs {
     public function displayJobs($userID) {
         $jobsArray = $this->getJobs($userID);
+        $uniqueDates = array_unique(array_column($jobsArray, 'entryDate'));
 
+        echo "<h1>".$jobsArray[0]["course"]."</h1>";    
         if(empty($jobsArray)) {
             echo "<h1>NO JOBS TO DISPLAY</h1>";
         } else {
-            echo "<h1>".$jobsArray[0]["course"]."</h1>";
-            echo "<table id='jobs'><tr>";
-                echo "<th>User</th>";
-                echo "<th>Job Description</th>";
-                echo "<th>Date</th>";
-            echo "</tr>";
-            foreach ($jobsArray as $job) {
-                echo "<tr>";
-                    echo "<td>". $job["username"] . "</td>";
-                    echo "<td>". $job["description"] . "</td>";
-                    echo "<td>". $job["entryDate"] . "</td>";
+            foreach ($uniqueDates as $date) {
+                echo "<table class='jobs'><tr>";
+                    echo "<th>User</th>";
+                    echo "<th>Job Description for: ". $date ."</th>";
                 echo "</tr>";
+                foreach ($jobsArray as $job) {
+                    if ($job['entryDate'] == $date) {
+                        echo "<tr>";
+                            echo "<td>". $job["username"] . "</td>";
+                            echo "<td>". $job["description"] . "</td>";
+                        echo "</tr>";
+                    }
+                }
+                echo "</table>";
             }
-            echo "</table>";
         }
     }
 

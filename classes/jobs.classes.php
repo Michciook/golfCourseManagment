@@ -2,7 +2,7 @@
 
 class Jobs extends Dbh {
     protected function getJobs($userID) {
-        $stmt = $this->connection()->prepare('SELECT jobs.jobID, jobs.description, jobs.entryDate, courses.name as course, users.username as username
+        $stmt = $this->connection()->prepare('SELECT jobs.jobID, jobs.description, date(jobs.entryDate) as entryDate, courses.name as course, users.username as username
                                                 FROM jobs
                                                 JOIN courses ON jobs.courseID = courses.courseID
                                                 JOIN users ON jobs.userID = users.userID
